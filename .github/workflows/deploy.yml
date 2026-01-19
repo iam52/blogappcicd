@@ -1,0 +1,41 @@
+name: CI-CD Deploy to RHEL
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: RHEL
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Copy jar to RHEL server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.RHEL_HOST }}
+          username: ${{ secrets.RHEL_USER }}
+          key: ${{ secrets.RHEL_SSH_KEY }}
+          source: "build/libs/springboot-developer-0.0.1-SNAPSHOT.jar"
+          target: "/opt/blogapp/"
+
+      - name: Restart service
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.RHEL_HOST }}
+          username: ${{ secrets.RHEL_USER }}
+          key: ${{ secrets.RHEL_SSH_KEY }}
+          script: |
+            sudo systemctl restart todoapp
