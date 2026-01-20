@@ -38,4 +38,8 @@ jobs:
           username: ${{ secrets.RHEL_USER }}
           key: ${{ secrets.RHEL_SSH_KEY }}
           script: |
-            sudo systemctl restart todoapp
+            cd /opt/blogapp/
+            sudo systemctl stop blogapp
+            sleep 3
+            sudo systemctl start blogapp
+            sudo systemctl status blogapp --no-pager -l
