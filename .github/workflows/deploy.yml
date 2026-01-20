@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.RHEL_SSH_KEY }}
           script: |
             cd /opt/blogapp/
-            sudo systemctl stop blogapp
+            sudo systemctl stop blogapp.service
             sleep 5
-            sudo systemctl start blogapp
-            sudo systemctl status blogapp --no-pager -l
+            sudo systemctl start blogapp.service
+            sudo systemctl status blogapp.service --no-pager -l
