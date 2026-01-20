@@ -31,6 +31,7 @@ jobs:
           port: 22
           source: "build/libs/springboot-developer-0.0.1-SNAPSHOT.jar"
           target: "/opt/blogapp/"
+          strip_component: 2
 
       - name: Restart service
         uses: appleboy/ssh-action@master
