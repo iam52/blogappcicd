@@ -12,6 +12,11 @@ public class UserViewController {
 
     @GetMapping("/")
     public String index() {
+        return "redirect:/articles";
+    }
+
+    @GetMapping("/login")
+    public String login() {
         return "login";
     }
 

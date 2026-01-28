@@ -42,7 +42,8 @@ public class WebSecurityConfig {
 				antMatcher("/"),
 				antMatcher("/login"),
 				antMatcher("/signup"),
-				antMatcher("/user")
+				antMatcher("/user"),
+				antMatcher("/articles")
 			).permitAll()
 			.anyRequest().authenticated()
 			.and()
