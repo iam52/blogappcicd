@@ -1,103 +1,227 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+/* 1. Google Fonts Import (현대적인 산세리프 폰트) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap');
 
+:root {
+    /* Color Palette */
+    --primary-color: #4f46e5;       /* 트렌디한 인디고 블루 */
+    --primary-hover: #4338ca;
+    --secondary-color: #64748b;     /* 차분한 슬레이트 그레이 */
+    --bg-color: #f3f4f6;            /* 눈이 편안한 웜 그레이 배경 */
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --text-sub: #6b7280;
+    --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 2. Global Reset & Typography */
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f8f9fa;
-    color: #212529;
+    background-color: var(--bg-color);
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif; /* 한글/영문 최적화 */
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-.content-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
+a {
+    text-decoration: none !important;
+    color: inherit;
+    transition: color 0.2s;
 }
 
-.articles-container {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* 3. Header Styling (세련된 그라디언트 헤더) */
+/* HTML의 .bg-light 클래스를 오버라이딩합니다 */
+.text-center.bg-light {
+    background: var(--accent-gradient) !important;
+    color: white !important;
+    padding: 4rem 2rem !important;
+    margin-bottom: 3rem !important;
+    border-radius: 0 0 30px 30px; /* 하단 둥근 모서리 */
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
 }
 
+.text-center.bg-light h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: -0.5px;
+}
+
+.text-center.bg-light h4 {
+    font-weight: 300;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+/* 4. Container & Layout */
+.content-wrapper, .container {
+    max-width: 900px; /* 가독성을 위해 너비 제한 */
+}
+
+/* 5. Card Styling (목록 페이지) */
 .card {
-    border: none;
-    border-bottom: 1px solid #e9ecef;
-    margin-bottom: 1.5rem;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none !important;
+    border-radius: 16px !important;
+    background: var(--card-bg);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 1.5rem; /* 카드 간 간격 */
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .card-header {
     background-color: transparent;
-    border-bottom: none;
-    font-size: 0.9rem;
-    color: #6c757d;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text-sub);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
 }
 
 .card-title {
     font-weight: 700;
-    color: #343a40;
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
 }
 
 .card-text {
-    color: #495057;
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 3줄 이상 말줄임 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Header Banner */
-.bg-light {
-    background-color: #ffffff !important;
-    border-bottom: 1px solid #dee2e6;
+/* 6. Detail View Styling (상세 페이지) */
+article header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.bg-light h1.mb-3 {
+article h1.fw-bolder {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.text-muted.fst-italic {
+    font-size: 0.9rem;
+    color: #9ca3af !important;
+}
+
+article section {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #374151;
+    white-space: pre-wrap; /* 줄바꿈 보존 */
+}
+
+/* 7. Form Styling (등록/수정 페이지) */
+.form-control {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background-color: #fff;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    background-color: #fff;
+}
+
+input#title {
+    font-size: 1.5rem;
     font-weight: 700;
-    font-size: 2.8rem;
+    height: auto;
+    padding: 1rem;
 }
 
-/* Buttons */
+textarea#content {
+    min-height: 400px;
+    resize: none; /* 크기 조절 방지 (디자인 유지) */
+}
+
+/* 8. Button Styling (Custom Modern Buttons) */
+.btn {
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Primary Button (등록, 수정, 보러가기) */
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    transition: background-color 0.2s, border-color 0.2s;
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
+/* Secondary Button (삭제, 글 등록) */
 .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    transition: background-color 0.2s, border-color 0.2s;
+    background-color: #fff;
+    color: var(--text-main);
+    border: 1px solid #e2e8f0;
 }
 
 .btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+    transform: translateY(-1px);
 }
 
-/* Form inputs */
-.form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+/* Info Button (목록) */
+.btn-info {
+    background-color: var(--secondary-color);
+    color: white;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .content-wrapper {
-        padding: 1rem;
-    }
+.btn-info:hover {
+    background-color: #475569;
+    transform: translateY(-1px);
+}
 
-    .articles-container {
-        padding: 1rem;
-    }
-    
-    .bg-light h1.mb-3 {
-        font-size: 2rem;
-    }
+/* 9. Utility & Auth Links */
+div[sec\:authorize] {
+    text-align: right;
+    margin-top: 2rem;
+}
+
+div[sec\:authorize] a {
+    color: var(--text-sub);
+    font-weight: 500;
+    border-bottom: 1px dashed var(--text-sub);
+}
+
+div[sec\:authorize] a:hover {
+    color: var(--primary-color);
+    border-bottom-style: solid;
+}
+
+/* 버튼 그룹 간격 조정 */
+button + button {
+    margin-left: 0.5rem;
 }

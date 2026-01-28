@@ -43,13 +43,18 @@ public class WebSecurityConfig {
 				antMatcher("/login"),
 				antMatcher("/signup"),
 				antMatcher("/user"),
-				antMatcher("/articles")
-			).permitAll()
+				antMatcher("/articles"),
+				antMatcher("/static/**"),
+				antMatcher("/css/**"),
+				antMatcher("/js/**"),
+				antMatcher("/error"),
+				antMatcher("/favicon.ico")
+				).permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
 			.loginPage("/login")
-			.defaultSuccessUrl("/articles")
+			.defaultSuccessUrl("/articles", true)
 			.and()
 			.logout()
 			.logoutSuccessUrl("/")
