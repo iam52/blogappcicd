@@ -7,15 +7,27 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
-<body>
-<div class="p-5 mb-5 text-center</> bg-light">
+<div class="p-5 mb-5 text-center bg-light header-wrapper"> <!-- header-wrapper 클래스 추가 -->
+
+    <!-- 우측 상단 로그인/로그아웃 버튼 영역 -->
+    <div class="header-auth">
+        <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login}" class="btn-auth btn-login-header">로그인</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" class="btn-auth btn-logout-header">로그아웃</a>
+        </div>
+    </div>
+
     <h1 class="mb-3">BlogApp</h1>
     <h4 class="mb-3">글 목록 보기</h4>
 </div>
+
+<body>
 <div class="container content-wrapper">
     <div class="articles-container">
         <button type="button" id="create-btn"
-                th:onclick="|location.href='@{/new-article}'|" class="btn btn-secondary btn-sm mb-3">글 등록
+                th:onclick="|location.href='@{/new-article}'|" class="btn btn-secondary btn-sm mb-3">글쓰기
         </button>
         <div class="row-6" th:each="item : ${articles}"> <!-- 1 article 개수만큼 반복 -->
             <div class="card">
@@ -28,14 +40,6 @@
             </div>
             <br>
         </div>
-
-        <div sec:authorize="isAnonymous()">
-            <a th:href="@{/login}">로그인</a>
-        </div>
-        <div sec:authorize="isAuthenticated()">
-            <a th:href="@{/logout}">로그아웃</a>
-        </div>
-
     </div>
 </div>
 
