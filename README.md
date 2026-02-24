@@ -1,7 +1,8 @@
 # BlogApp
 
 이 프로젝트는 Spring Boot와 관련 기술 스택을 사용하여 개발된 간단한 블로그 애플리케이션입니다. <br>
-사용자 인증, 게시글 관리 등 필수적인 웹 애플리케이션 기능을 포함하고 있습니다.
+사용자 인증, 게시글 관리 등 필수적인 웹 애플리케이션 기능을 포함하고 있습니다. <br>
+RHEL on-premise 배포 중입니다.
 
 ## ✨ 주요 기능
 
@@ -15,9 +16,12 @@
 
 - **Backend**: Java, Spring Boot
 - **Security**: Spring Security, JWT
-- **Database**: Spring Data JPA, MySQL
+- **Database**: Spring Data JPA, MariaDB
 - **Build Tool**: Gradle
 - **Frontend**: Thymeleaf, HTML, CSS, JavaScript
+- **Server**: Red Hat Enterprise Linux
+- **Database Server**: Podman
+- **CI/CD**: Gihub Actions
 
 ## 🚀 시작하기
 
