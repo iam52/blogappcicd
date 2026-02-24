@@ -24,7 +24,7 @@
 ### 1. 프로젝트 클론
 
 ```bash
-git clone https://github.com/your-username/springboot-developer.git
+git clone https://github.com/iam52/springboot-developer.git
 cd springboot-developer
 ```
 
