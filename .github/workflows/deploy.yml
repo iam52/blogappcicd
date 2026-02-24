@@ -43,6 +43,6 @@ jobs:
           script: |
             cd /opt/blogapp/
             sudo /usr/bin/systemctl stop blogapp.service
-            sleep 5
+            sleep 2
             sudo /usr/bin/systemctl start blogapp.service
             sudo /usr/bin/systemctl status blogapp.service --no-pager -l
