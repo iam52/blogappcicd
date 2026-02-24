@@ -57,6 +57,12 @@ dependencies {
     implementation 'mysql:mysql-connector-java'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
+    // Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // Prometheus
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
 
     implementation 'org.springframework.boot:spring-boot-starter-validation'
