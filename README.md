@@ -21,7 +21,7 @@ RHEL on-premise 배포 중입니다.
 - **Frontend**: Thymeleaf, HTML, CSS, JavaScript
 - **Server**: Red Hat Enterprise Linux
 - **Database Server**: Podman
-- **CI/CD**: Gihub Actions
+- **CI/CD**: Github Actions
 
 ## 🚀 시작하기
 
