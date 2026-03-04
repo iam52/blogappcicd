@@ -24,23 +24,20 @@ jobs:
         run: ./gradlew build -x test
 
       - name: Copy jar to RHEL server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.RHEL_HOST }}
-          username: ${{ secrets.RHEL_USER }}
-          key: ${{ secrets.RHEL_SSH_KEY }}
-          port: 22
-          source: "build/libs/springboot-developer-0.0.1-SNAPSHOT.jar"
-          target: "/opt/blogapp/"
-          strip_components: 2
-          overwrite: true
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.RHEL_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 22 ${{ secrets.RHEL_HOST }} >> ~/.ssh/known_hosts
+          rsync -avz --progress \
+            -e "ssh -i ~/.ssh/id_rsa -p 22" \
+            build/libs/springboot-developer-0.0.1-SNAPSHOT.jar \
+            ${{ secrets.RHEL_USER }}@${{ secrets.RHEL_HOST }}:/opt/blogapp/
 
       - name: Restart service
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.RHEL_HOST }}
-          username: ${{ secrets.RHEL_USER }}
-          key: ${{ secrets.RHEL_SSH_KEY }}
-          script: |
-            cd /opt/blogapp/
-            sudo /usr/bin/systemctl restart blogapp.service
+        run: |
+          ssh -i ~/.ssh/id_rsa \
+            -o StrictHostKeyChecking=no \
+            -p 22 \
+            ${{ secrets.RHEL_USER }}@${{ secrets.RHEL_HOST }} \
+            "sudo /usr/bin/systemctl restart blogapp.service"
