@@ -47,7 +47,8 @@ public class WebSecurityConfig {
 				antMatcher("/css/**"),
 				antMatcher("/js/**"),
 				antMatcher("/error"),
-				antMatcher("/favicon.ico")
+				antMatcher("/favicon.ico"),
+				antMatcher("/actuator/**")
 				).permitAll()
 			.anyRequest().authenticated()
 			.and()
