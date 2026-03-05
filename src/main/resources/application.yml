@@ -40,3 +40,9 @@ management:
   endpoint:
     health:
       show-details: always
+  metrics:
+    tags:
+      application: blogapp
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
