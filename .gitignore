@@ -43,3 +43,6 @@ out/
 !/src/main/resources/application.properties
 /src/main/resources/application-local*.properties
 /src/main/resources/application-dev*.yml
+
+### etc ###
+/grafana_jsonModel.json
